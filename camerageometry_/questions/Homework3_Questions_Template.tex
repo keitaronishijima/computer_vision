@@ -1,0 +1,457 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% CSCI 1430 Written Question Template
+%
+% This is a LaTeX document. LaTeX is a markup language for producing documents. 
+% You will fill out this document, compile it into a PDF document, then upload the PDF to Gradescope. 
+%
+% To compile into a PDF on department machines:
+% > pdflatex thisfile.tex
+%
+% If you do not have LaTeX, your options are:
+% - VSCode extension: https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop
+% - Online Tool: https://www.overleaf.com/ - most LaTeX packages are pre-installed here (e.g., \usepackage{}).
+% - Personal laptops (all common OS): http://www.latex-project.org/get/ 
+%
+% If you need help with LaTeX, please come to office hours.
+% Or, there is plenty of help online:
+% https://en.wikibooks.org/wiki/LaTeX
+%
+% Good luck!
+% James and the 1430 staff
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% How to include two graphics on the same line:
+%
+% \includegraphics[width=0.49\linewidth]{yourgraphic1.png}
+% \includegraphics[width=0.49\linewidth]{yourgraphic2.png}
+%
+% How to include equations:
+%
+% \begin{equation}
+% y = mx+c
+% \end{equation}
+%
+% How to include code:
+%
+% \begin{python}
+% def f(x):
+%   return x
+% \end{python}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue]{hyperref}
+\usepackage[a4paper,margin=1.5in]{geometry}
+\usepackage{stackengine,graphicx}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\setlength{\headheight}{15pt}
+\usepackage{microtype}
+\usepackage{times}
+\usepackage{booktabs}
+\usepackage[shortlabels]{enumitem}
+\setlist[enumerate]{topsep=0pt}
+
+% python code format: https://github.com/olivierverdier/python-latex-highlighting
+\usepackage{pythonhighlight}
+
+\frenchspacing
+\setlength{\parindent}{0cm} % Default is 15pt.
+\setlength{\parskip}{0.3cm plus1mm minus1mm}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Homework 3 Questions}
+\rhead{CSCI 1430}
+\lfoot{\textcolor{red}{Only
+\ifcase\thepage
+\or instructions
+\or A1
+\or A2
+\or Q3
+\or A3
+\or A3
+\or A4
+\or A4
+\or A5
+\or A6
+\or A6
+\or A7
+\or feedback
+\else
+EXTRA PAGE ADDED
+\fi
+should be on this page
+}}
+\rfoot{\thepage/13}
+
+\date{}
+
+\title{\vspace{-1cm}Homework 3 Questions}
+
+
+\begin{document}
+\maketitle
+\vspace{-2cm}
+\thispagestyle{fancy}
+
+\section*{Instructions}
+\begin{itemize}
+  \item 2 socially-responsible computing questions, which will be expanded on in discussion sections.
+  \item 5 technical questions.
+  \item Write code where appropriate; feel free to include images or equations.
+  \item Please make this document anonymous.
+  \item This assignment is \textbf{fixed length}, and the pages have been assigned for you in Gradescope. As a result, \textbf{please do NOT add any new pages}. We will provide ample room for you to answer the questions. If you \emph{really} wish for more space, please add a page \emph{at the end of the document}.
+  \item \textbf{We do NOT expect you to fill up each page with your answer.} Some answers will only be a few sentences long, and that is okay.
+\end{itemize}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak 
+\paragraph{Q1:} One major application of cameras is surveillance systems. This is true on Brown's campus too, where the number of cameras has been increasing: compare this \href{https://www.browndailyherald.com/2008/01/10/surveillance-cameras-on-campus-triple/}{2008 Brown Daily Herald article} with this \href{https://www.browndailyherald.com/2020/02/21/cameras-installed-hegeman-hall/}{2020 Brown Daily Herald article}. There are now 800 surveillance cameras on campus.
+
+One argument in favor of surveillance systems is to ``deter and solve crime''---that surveillance improves safety. Another is that if you're not doing anything wrong, you don't have anything to worry about. One argument against surveillance systems is that they compromise people's privacy even when no wrongdoing is taking place. Another is that they increase stress and anxiety.
+
+How comfortable are you with Brown's surveillance apparatus?
+In what circumstances do you believe that the potential benefits of surveillance systems outweigh the potential concerns, and why? [6-7 sentences]
+
+\paragraph{A1:} Your answer here.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\paragraph{Q2:} Drones are used within surveillance systems. Drones can be manually remote controlled, or use \href{https://link.springer.com/article/10.1007/s10846-017-0483-z}{sophisticated computer vision} strategies like feature matching and camera pose estimation to enable assisted or even autonomous flying in complex environments.
+
+For your CSCI 1430 final project, you are developing a drone for \href{https://www.cnn.com/2019/05/01/health/drone-organ-transplant-bn-trnd/index.html}{life-saving organ delivery}. You create a successful computer vision algorithm that allows your drone to navigate autonomously, and are approached by several organizations that want to pay you generously for access to your project.
+
+Please list three organizations that might be interested in acquiring your project for their own purposes. If each of these organizations used your project, who could benefit and how? Who could be harmed and how? [6-7 sentences]
+
+\paragraph{A2:} Your answer here.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\paragraph{Q3 (Linear algebra/numpy question):}
+Suppose we have a quadrilateral $ABCD$ and a transformed version $A'B'C'D'$ as seen in the image below.
+
+\includegraphics[width=8cm]{quadrilaterals.jpg}
+
+\begin{equation}
+\begin{split}
+A&=(1, 1)\\
+B&=(1.5, 0.5)\\
+C&=(2, 1)\\
+D&=(2.5, 2)
+\end{split}
+\quad\quad\quad
+\begin{split}
+A'&=(-0.3, 1.3)\\
+B'&=(0.5, 1.1)\\
+C'&=(0.3, 1.8)\\
+D'&=(-0.3, 2.6)
+\end{split}
+\end{equation}
+
+Let's assume that each point in $ABCD$ was approximately mapped to its corresponding point in $A'B'C'D'$ by a $2\times2$ transformation matrix $M$.
+
+e.g. if $A = \begin{pmatrix} x \\ y \end{pmatrix}$ and $A' = \begin{pmatrix} x' \\ y' \end{pmatrix}$, and $\boldsymbol{M} = \begin{pmatrix} m_{1,1} & m_{1,2} \\ m_{2,1} & m_{2,2} \end{pmatrix}$
+
+then $\begin{pmatrix} m_{1,1} & m_{1,2} \\ m_{2,1} & m_{2,2} \end{pmatrix} * \begin{pmatrix} x \\ y \end{pmatrix} \approx \begin{pmatrix} x' \\ y' \end{pmatrix}$
+
+We would like to approximate $\boldsymbol{M}$ using least squares for linear regression.
+
+\begin{enumerate}[(a)]
+\item Rewrite the equation $\boldsymbol{M}x \approx x'$ into a pair of linear equations. We have provided you with a template of what they should look like below.
+
+\item Use the equations you wrote for part (a) and coordinate values for $ABCD$ and $A'B'C'D'$ to construct a matrix $\boldsymbol{Q}$ and column vector $b$ that satisfy
+\begin{align}
+    \boldsymbol{Q}*\begin{pmatrix} m_{1,1} \\ m_{1,2} \\ m_{2,1} \\ m_{2,2} \\ \end{pmatrix} = b
+\end{align}
+
+We have provided you with a template of what they should look like below.
+
+\emph{Hint:} You have a pair of equations for each $x$-$x'$ correspondence, giving you $8$ rows in $\boldsymbol{Q}$ and $b$. If you're having trouble, try writing out the equations for each pair of points like in part (a).
+
+\emph{Note:} Systems of linear equations are typically written in the form $\boldsymbol{A}x=b$, but since we have already defined $A$ and $x$, we're writing it as $\boldsymbol{Q}m=b$
+
+\item Our problem is now over-constrained, so we want to find values for $m_{i,j}$ that minimize the squared error between approximated values and real values, or $||\boldsymbol{Q}m-b||_2$. To do this we use singular value decomposition to find the pseudoinverse of $\boldsymbol{Q}$, written as $\boldsymbol{Q}^\dagger$. We then multiply it by both sides, giving us $\boldsymbol{Q}^\dagger \boldsymbol{Q}m = \boldsymbol{Q}^\dagger b \quad\Rightarrow\quad m \approx \boldsymbol{Q}^\dagger b$.
+
+Thankfully, the computer can do all of this for us! \texttt{numpy.linalg.lstsq()} takes in our $\boldsymbol{Q}$ matrix and $b$ vector, and returns approximations for $m$. Plug the values you wrote in part (b) into that function and write the returned $\boldsymbol{M}$ matrix here.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{A3:} Your answer here.
+% Uncomment the stencil below and fill in your solution.
+
+\begin{enumerate}[(a)]
+
+\item Replace each of the `$\_\_$' below with $x, y, x', y',$ or $0$.
+\begin{align}
+\begin{cases}
+    \_\_m_{1,1} + \_\_m_{1,2} + \_\_m_{2,1} + \_\_m_{2,2} = \_\_ \\
+    \_\_m_{1,1} + \_\_m_{1,2} + \_\_m_{2,1} + \_\_m_{2,2} = \_\_
+\end{cases}
+\end{align}
+
+\item Replace each of the `$\_\_$' below with a $0$ or a coordinate value from $ABCD$ and $A'B'C'D'$.
+\begin{align}
+    \begin{pmatrix} \_\_ & \_\_ & \_\_ & \_\_ \\ \_\_ & \_\_ & \_\_ & \_\_ \\ \_\_ & \_\_ & \_\_ & \_\_ \\ \_\_ & \_\_ & \_\_ & \_\_ \\ \_\_ & \_\_ & \_\_ & \_\_ \\ \_\_ & \_\_ & \_\_ & \_\_ \\ \_\_ & \_\_ & \_\_ & \_\_ \\ \_\_ & \_\_ & \_\_ & \_\_\end{pmatrix} *\begin{pmatrix} m_{1,1} \\ m_{1,2} \\ m_{2,1} \\ m_{2,2} \\ \end{pmatrix} = \begin{pmatrix} \_\_ \\ \_\_ \\ \_\_ \\ \_\_ \\ \_\_ \\ \_\_ \\ \_\_ \\ \_\_ \end{pmatrix}
+\end{align}
+
+\item Replace each of the `$\_\_$' below with the value of $m_{i, j}$.
+\begin{align}
+    M = \begin{pmatrix} m_{1,1} & m_{1,2} \\ m_{2,1} & m_{2,2} \end{pmatrix} = \begin{pmatrix} \_\_ & \_\_ \\ \_\_ & \_\_ \end{pmatrix}
+\end{align}
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Please leave the pagebreak
+\pagebreak
+\paragraph{A3 (continued):} Your answer here.
+
+% If you really need extra space, uncomment here and use extra pages after the last question.
+% Please refer here in your original answer. Thanks!
+%\pagebreak
+%\paragraph{AX.X Continued:} Your answer continued here.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Please leave the pagebreak
+\pagebreak
+\paragraph{Q4a:} In lecture, you've learned that cameras can be represented by intrinsic and extrinsic matrices. These matrices can be used to calculate the projections of points within a 3D world onto 2D image planes. For this, we use \emph{homogeneous coordinates}. The final $4\times3$ matrix is known as the \emph{camera matrix}.
+\begin{enumerate} [(a)]
+\item For each of the following camera specifications, fill in its intrinsic and extrinsic matrices. Then perform the multiplications and perspective division (unhomogenize) to find the 2D coordinates of the projected point on the image.
+\begin{enumerate} [(i)]
+
+\item A camera with focal length in both $x$ and $y$ directions of $1$, and no skew, translation, or rotation.
+\vspace{-0.3cm}
+\begin{align}
+    \begin{pmatrix} 
+    \_\_ & \_\_ & $0$ \\ 
+    $0$ & \_\_ & $0$ \\ 
+    $0$ & $0$ & $1$ \end{pmatrix} *
+    \begin{pmatrix} 
+    \_\_ & \_\_ & \_\_ & \_\_ \\ 
+    \_\_ & \_\_ & \_\_ & \_\_ \\ 
+    \_\_ & \_\_ & \_\_ & \_\_ \end{pmatrix} * 
+    \begin{pmatrix} 
+    $30$ \\ 
+    $-20$ \\ 
+    $10$ \\ 
+    $1$ \end{pmatrix}
+    = \begin{pmatrix}  \_\_ \\ \_\_ \\ \_\_ \end{pmatrix}
+    = \_\_ * \begin{pmatrix}  \_\_ \\ \_\_ \\ $1$ \end{pmatrix}
+\end{align}
+
+\item A camera with focal length in both $x$ and $y$ directions of $2$, a translation of $5$ along the x-axis, and no skew or rotation.
+\vspace{-0.3cm}
+\begin{align}
+    \begin{pmatrix} 
+    \_\_ & \_\_ & $0$ \\ 
+    $0$ & \_\_ & $0$ \\ 
+    $0$ & $0$ & $1$ \end{pmatrix} *
+    \begin{pmatrix} 
+    \_\_ & \_\_ & \_\_ & \_\_ \\ 
+    \_\_ & \_\_ & \_\_ & \_\_ \\ 
+    \_\_ & \_\_ & \_\_ & \_\_ \end{pmatrix} * 
+    \begin{pmatrix} 
+    $30$ \\ 
+    $-20$ \\ 
+    $10$ \\ 
+    $1$ \end{pmatrix}
+    = \begin{pmatrix}  \_\_ \\ \_\_ \\ \_\_ \end{pmatrix}
+    = \_\_ * \begin{pmatrix}  \_\_ \\ \_\_ \\ $1$ \end{pmatrix}
+\end{align}
+
+\end{enumerate}
+\item Compare the two image coordinates you've calculated in parts a and b. Explain how each parameter affects the final image coordinate. (2-3 sentences)
+
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{A4a:} Your answer here.
+% Uncomment the stencil below and fill in your solution.
+
+% \begin{enumerate}[(a)]
+
+% \item
+
+% \end{enumerate}
+
+% \begin{enumerate}[(b)]
+
+% \item
+
+% \begin{python}
+% # Your code here
+% \end{python}
+
+% \includegraphics[width=0.5\linewidth]{yourscreenshot.png}
+
+% \end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Please leave the pagebreak
+\pagebreak
+\paragraph{Q4b:}
+In the questions folder, we've provided stencil code for a camera simulation in {camera\_simulation.py}. Given a camera matrix, the simulator visualizes an image that a camera would produce. Please implement {calculate\_camera\_matrix()} by calculating the camera matrix using the parameters given in the code (see stencil for more detail). 
+
+\includegraphics[width=0.3\linewidth]{bunny.png}
+
+When successful, you will see a bunny rendered as dots. Paste your code for this function and attach a screenshot of the working demo once you finish. Play around with the sliders to see how different parameters affect the projection!
+
+\paragraph{A4b:} Your answer here.
+
+\begin{python}
+Your code here.
+\end{python}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\paragraph{Q5:} Given a stereo pair of cameras:
+\begin{enumerate} [(a)]
+\item Briefly describe triangulation (using images might be helpful).
+\item Why is it not possible to find an absolute depth for each point when we don't have calibration information for our cameras?
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{A5:} Your answer here.
+% Uncomment the stencil below and fill in your solution.
+
+% \begin{enumerate}[(a)]
+
+% \item
+
+% \item
+
+% \end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\paragraph{Q6:}
+Given the algorithms that we've learned in computer vision, suppose that we have the following three datasets of an object of unknown geometry:
+
+\begin{enumerate}[(a)]
+\item A video circling the object;
+\item A stereo pair of calibrated cameras capturing two images of the object; and
+\item Two images we take of the object at two different camera poses (position and orientation) using the same camera but with different lens zoom settings.
+\end{enumerate}
+
+\begin{enumerate}
+\item For each of the above setups, decide if we are able to find/calculate the essential matrix, the fundamental matrix, or both. \\
+\emph{LaTeX:} To fill in boxes, replace `\textbackslash square' with `\textbackslash blacksquare' for your answer. \\ \\
+(a)
+\begin{tabular}[h]{lc}
+\toprule
+Essential Matrix & $\square$ \\
+Fundamental Matrix & $\square$ \\
+Both & $\square$ \\
+\end{tabular} \\
+(b)
+\begin{tabular}[h]{lc}
+\toprule
+Essential Matrix & $\square$ \\
+Fundamental Matrix & $\square$ \\
+Both & $\square$ \\
+\end{tabular} \\
+(c)
+\begin{tabular}[h]{lc}
+\toprule
+Essential Matrix & $\square$ \\
+Fundamental Matrix & $\square$ \\
+Both & $\square$ \\
+\bottomrule
+\end{tabular}
+\item State an advantage and disadvantage of using each setup for depth reconstruction; and
+\item Name an application scenario for each of the different setups.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{A6:} Your answer here.
+% Uncomment the stencil below and fill in your solution.
+
+% \begin{enumerate}[(a)]
+
+% \item
+
+% \item
+
+% \item
+
+% \end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Please leave the pagebreak
+\pagebreak
+\paragraph{A6 (continued):} Your answer here.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Please leave the pagebreak
+\pagebreak
+\paragraph{Q7:} In two-view camera geometry, what do the following epipolar lines say about the cameras' relative positions?
+\begin{enumerate}[(a)]
+\item Radiate out of a point on the image plane.
+
+\includegraphics[width = 0.25\linewidth]{epipolarlines-a.PNG}
+\item Converge to a point outside of the image plane.
+
+\includegraphics[width = 0.25\linewidth]{epipolarlines-b.PNG}
+\end{enumerate}
+
+We created an \href{https://browncsci1430.github.io/webpage/demos/stereo_camera_visualization/index.html}{interactive demo} to explore the different scenarios and get a better feel for epipolar geometry.
+\begin{enumerate}[(c)]
+\item What might you need to change about your fundamental matrix calculations if you obtained the following epipolar lines? (Hint: check slides from the lecture on stereo geometry.)
+
+\includegraphics[width = 0.25\linewidth]{epipolarlines-c.PNG}
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{A7:} Your answer here.
+% Uncomment the stencil below and fill in your solution.
+
+% \begin{enumerate}[(a)]
+
+% \item
+
+% \item
+
+% \item
+
+% \end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section*{Feedback? (Optional)}
+Please help us make the course better. If you have any feedback for this assignment, we'd love to hear it!
+
+
+% \pagebreak
+% \section*{Any additional pages would go here.}
+
+\end{document}
